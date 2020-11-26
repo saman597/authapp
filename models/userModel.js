@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema(
       type: Date
     }
   },
+  { id: false },
   schemaOptions
 );
 
