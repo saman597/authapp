@@ -28,7 +28,7 @@ app.use('/api/v1/users' , require('./routes/userRoutes'));
 // 404 handling Route
 app.all('*', (req, res) => {
   res.status(404).json({
-    status: 'fail',
+    status: false,
     message: `Can't find ${req.originalUrl} on this server!`
   });
 });
