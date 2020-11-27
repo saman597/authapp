@@ -25,4 +25,12 @@ app.use(express.json());
 //Mounting the router
 app.use('/api/v1/users' , require('./routes/userRoutes'));
 
+// 404 handling Route
+app.all('*', (req, res) => {
+  res.status(404).json({
+    status: 'fail',
+    message: `Can't find ${req.originalUrl} on this server!`
+  });
+});
+
 module.exports = app;
