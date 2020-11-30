@@ -14,15 +14,13 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-const server = app.listen(PORT,()=>{
+app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}.`);
 });
 
 process.on('unhandledRejection', err => {
   console.log('Shutting down app...');
-  server.close(() => {
-    console.log(err.name, err.message);
-    process.exit(1);
-  });
+  console.log(err.name, err.message);
+  process.exit(1);
 });
 

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const mongoose = require('mongoose');
  
 const User = require('../models/userModel');
 const sendMail = require('../config/emailHandler');
@@ -14,7 +15,17 @@ const signToken = id => {
 const createJWT = (userId, statusCode, message, res) => {
 
     const token = signToken(userId);
-
+    
+    const cookieOptions = {
+        expires: new Date(
+          Date.now() + process.env.JWT_COOKIE_EXPIRY_DT * 24 * 60 * 60 * 1000
+        ),
+        secure: false,
+        httpOnly: true
+      };
+        
+    res.cookie('jwt', token, cookieOptions);
+    
     res.status(statusCode).json({
         status: true,
         message
