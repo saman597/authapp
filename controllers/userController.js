@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const mongoose = require('mongoose');
  
 const User = require('../models/userModel');
 const sendMail = require('../config/emailHandler');
@@ -84,7 +83,6 @@ exports.signUp = async (req, res) => {
         console.log(`Virtual pass = ${user.pass}`);
 
         createJWT(user._id, 201, "User signed up successfully.", res);
-
        
     } catch (err) {
 
